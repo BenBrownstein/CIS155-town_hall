@@ -1,2 +1,2 @@
-# CIS155-town_hall_1
-town_hall_1 HW for CIS 155
+# CIS155-town_hall
+town_hall HW for CIS 155
