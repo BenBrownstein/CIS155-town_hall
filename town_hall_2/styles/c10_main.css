@@ -7,6 +7,9 @@ html {
 	background-color: white;
 }
 body {
+	display: grid;
+	grid-template: auto auto auto auto / 1fr;
+	grid-template-areas: "head" "navi" "main" "foot";
 	font-family: Arial, Helvetica, sans-serif;
     font-size: 100%;
     width: 98%;                     /* changed from 800 pixels */
@@ -20,6 +23,7 @@ a:focus, a:hover {
 }
 /* the styles for the header */
 header {
+	grid-area: head;
 	padding: 1.5em 0 2em 0;
 	border-bottom: 3px solid #931420;
 		background-image: -moz-linear-gradient(
@@ -30,6 +34,8 @@ header {
 	    30deg, #f6bb73 0%, #f6bb73 30%, white 50%, #f6bb73 80%, #f6bb73 100%);
 	background-image: linear-gradient(
 	    30deg, #f6bb73 0%, #f6bb73 30%, white 50%, #f6bb73 80%, #f6bb73 100%);
+	grid-row: 1;
+	grid-column: 1;
 }
 header h2 {
 	font-size: 175%;
@@ -47,10 +53,21 @@ header img {
 	text-shadow: 2px 2px 2px #800000;
 }
 /* the styles for the navigation menu */
+#nav_menu
+{
+	grid-area: navi;
+	grid-column: 1;
+	grid-row: 2;
+	
+}
 #nav_menu ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	display: grid;
+	grid-template:auto / 1fr 1fr 1fr 1fr 1fr;
+	align-content: center;
+
 }
 #nav_menu ul li a {
     display: block;
@@ -65,9 +82,22 @@ header img {
 	color: yellow;
 }
 
+main
+{
+	grid-row: 3;
+	grid-area: main;
+	grid-column: 1;
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 30% 1fr;
+	grid-column-gap: 2.5%;
+	grid-template-areas: "section" "aside";
+}
 /* the styles for the section */
 section {
-    padding: 0 2.5% 20px 2.5%;
+	grid-area: section;
+    padding: 0 2.5% 20px 0;
+	grid-column: 2;
 }
 section h1 {
 	font-size: 150%;
@@ -117,7 +147,10 @@ article img {
 
 /* the styles for the aside */
 aside {
+	grid-area: aside;
     padding: 0 0 20px 2.5%;
+	grid-column: 1;
+	grid-row: 1;
 }
 aside h2 {
 	color: #800000;
@@ -134,7 +167,10 @@ aside img {
 
 /* the styles for the footer */
 footer {
+	grid-area: foot;
+	grid-column: 1;
 	background-color: #931420;
+	grid-row: 4;
 }
 footer p {
 	text-align: center;
@@ -159,15 +195,30 @@ footer p {
 
 @media only screen and (max-width: 648px) {
 	header img { float: none; }
-	header { text-align: center; }
+	header { 
+		text-align: center; 
+		grid-template: auto auto auto / 1fr;
+		grid-gap: 0.5em;
+	}
+	main{
+		grid-template: auto auto / 1fr;
+	}
 	section {
 		float: none;
 		width: 95%;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+		grid-column: 1;
+		grid-row: 1;
+		padding-right: 0%;
 	}
 	aside {
 		float: none;
 		padding-right: 2.5%;
+		padding-left: 2.5%;
 		width: 95%;
+		grid-column: 1;
+		grid-row: 2;
 	}
 	article img { max-width: 30%; }
 	#speakers {
@@ -177,6 +228,7 @@ footer p {
 		display: none;
 	}
 	#mobile_menu {
+		grid-area: navi;
 		display: block;
 	}
 	.slicknav_menu {
